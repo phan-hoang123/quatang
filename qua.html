@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gửi cậu nè ❤️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CẤU HÌNH CHUNG --- */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
+
+        body {
+            margin: 0; padding: 0;
+            height: 100vh; height: 100dvh;
+            overflow: hidden;
+            background: linear-gradient(135deg, #FFF6B7 0%, #F6416C 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 8s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            position: relative;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- MÂY BAY --- */
+        .cloud {
+            position: absolute; background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%; animation: floatCloud 25s infinite linear; z-index: 1;
+        }
+        .c1 { top: 15%; left: -20%; width: 120px; height: 120px; animation-duration: 22s; }
+        .c2 { bottom: 20%; right: -20%; width: 90px; height: 90px; animation-duration: 18s; animation-direction: reverse; }
+
+        @keyframes floatCloud {
+            from { transform: translateX(-50px) rotate(0deg); }
+            to { transform: translateX(120vw) rotate(360deg); }
+        }
+
+        /* --- KHUNG CHỨA --- */
+        .container {
+            position: relative; z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            padding: 40px 25px;
+            border-radius: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            width: 85%; max-width: 380px;
+            text-align: center;
+            border: 4px solid #fff;
+        }
+
+        /* --- STICKER Ở GÓC --- */
+        .corner-gif {
+            position: absolute; width: 70px; height: 70px; z-index: 20; pointer-events: none;
+        }
+        .top-left { top: -30px; left: -20px; transform: rotate(-20deg); animation: wiggle 2s ease-in-out infinite; }
+        .bottom-right { bottom: -25px; right: -20px; transform: rotate(10deg); animation: wiggle 2.5s ease-in-out infinite reverse; }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-20deg) translateY(0); }
+            50% { transform: rotate(-10deg) translateY(-5px); }
+        }
+
+        h1 {
+            font-family: 'Patrick Hand', cursive; color: #F6416C;
+            font-size: 26px; margin-bottom: 30px; min-height: 80px;
+            display: flex; align-items: center; justify-content: center; line-height: 1.3;
+        }
+
+        button {
+            width: 100%; background: linear-gradient(to right, #ff9966, #ff5e62); 
+            color: #fff; font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 18px;
+            padding: 16px 0; border-radius: 50px; border: none; cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 94, 98, 0.3); transition: transform 0.1s; outline: none;
+        }
+        button:active { transform: scale(0.95); }
+
+        #troll-image {
+            display: none; width: 100%; border-radius: 15px; margin-top: 10px;
+            border: 3px solid #F6416C; animation: popIn 0.5s;
+        }
+        @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+
+        .floating-heart {
+            position: absolute; color: #ff4757; font-size: 24px; pointer-events: none;
+            animation: flyUp 1.2s ease-out forwards; z-index: 100;
+        }
+        @keyframes flyUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-200px) scale(1.5) rotate(45deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" preload="auto">
+        <source src="videoplayback.m4a" type="audio/mpeg">
+    </audio>
+    <audio id="pop-sound" preload="auto">
+        <source src="https://www.myinstants.com/media/sounds/pop-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="cloud c1"></div>
+    <div class="cloud c2"></div>
+
+    <div class="container">
+        <img class="corner-gif top-left" src="misskalem-at-15658_512.gif" alt="Cat">
+        <img class="corner-gif bottom-right" src="misskalem-cat-13496_512.gif" alt="Love">
+
+        <h1 id="message">T có món quà bất ngờ cho m này =))) 🎁</h1>
+        
+        <img id="troll-image" src="f5683625-1a28-43b2-a1ef-fba46c34db8a.jpg" alt="Troll">
+        
+        <br>
+        <button id="btn-next" onclick="nextStep(event)">Ấn vào đây đi 👇</button>
+    </div>
+
+    <script>
+        const messages = [
+            "Bật loa điện thoại lên !",
+            "Đang tải dữ liệu.........",
+            "Chuẩn bị mở quà nhá =)))",
+            "Tiếp tục đi :)))",
+            "Còn nữa",
+            "Sắp mở được quà r",
+            "Cố lên =)))",
+            "1 tí nữa th",
+            "BẤT NGỜ CHƯA BÀ GIÀ! =)))) Lêu Lêu 😝"
+        ];
+
+        let currentStep = 0;
+        const messageElement = document.getElementById('message');
+        const buttonElement = document.getElementById('btn-next');
+        const imageElement = document.getElementById('troll-image');
+        
+        const music = document.getElementById('bg-music');
+        const popSound = document.getElementById('pop-sound');
+
+        function nextStep(event) {
+            // 1. Chỉ phát tiếng Pop nhẹ nhàng mỗi khi bấm (Không phát nhạc nền)
+            popSound.currentTime = 0;
+            popSound.play().catch(e => {});
+
+            // 2. Tim bay
+            let clientX = event.clientX;
+            let clientY = event.clientY;
+            if(event.touches && event.touches.length > 0) {
+                clientX = event.touches[0].clientX;
+                clientY = event.touches[0].clientY;
+            }
+            createFloatingHeart(clientX, clientY);
+            
+            // Rung nhẹ
+            if (navigator.vibrate) navigator.vibrate(50);
+
+            if (currentStep < messages.length) {
+                // Đổi chữ
+                messageElement.innerText = messages[currentStep];
+
+                // BƯỚC CUỐI CÙNG: Hiện ảnh + MỚI PHÁT NHẠC
+                if (currentStep === messages.length - 1) {
+                    buttonElement.style.display = 'none';
+                    imageElement.style.display = 'block';
+                    
+                    // --- BÂY GIỜ NHẠC MỚI NỔI LÊN ---
+                    music.volume = 1.0; // Max volume cho giật mình
+                    music.play().catch(e => console.log("Lỗi phát nhạc"));
+                    
+                    // Rung mạnh
+                    if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 500]);
+                }
+                
+                currentStep++;
+            }
+        }
+
+        function createFloatingHeart(x, y) {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            const randomX = (Math.random() - 0.5) * 50;
+            heart.style.left = (x + randomX) + 'px';
+            heart.style.top = y + 'px';
+            const size = Math.random() * 20 + 20;
+            heart.style.fontSize = size + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 1200);
+        }
+    </script>
+</body>
+</html>
